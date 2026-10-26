@@ -1,0 +1,11 @@
+template: testify
+dir: '{{.ConfigDir}}/mocks'
+filename: mocks.gen.go
+pkgname: mocks
+structname: 'Mock{{.InterfaceName}}'
+packages:
+  github.com/Averlex/kafkakit:
+    interfaces:
+      Controller: {}
+      Subscription: {}
+      ControllerFactory: {}

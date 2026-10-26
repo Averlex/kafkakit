@@ -1,0 +1,119 @@
+version: "2"
+
+run:
+  build-tags: []
+  tests: true
+  allow-parallel-runners: true
+  fix: true
+  skip-dirs:
+    - libs/masking
+
+linters:
+  default: none
+  enable:
+    - asciicheck
+    - bodyclose
+    - copyloopvar
+    - dogsled
+    - dupl
+    - durationcheck
+    - errorlint
+    - exhaustive
+    - funlen
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - goheader
+    - goprintffuncname
+    - gosec
+    - govet
+    - importas
+    - ineffassign
+    - lll
+    - makezero
+    - misspell
+    - nestif
+    - nilerr
+    - noctx
+    - nolintlint
+    - prealloc
+    - predeclared
+    - revive
+    - staticcheck
+    - thelper
+    - unconvert
+    - unparam
+    - unused
+    - whitespace
+  settings:
+    funlen:
+      lines: 150
+      statements: 80
+    revive:
+      rules:
+        - name: atomic
+        - name: confusing-naming
+        - name: datarace
+          severity: warning
+        - name: deep-exit
+        - name: defer
+          severity: warning
+        - name: error-return
+        - name: exported
+          severity: warning
+        - name: function-result-limit
+          severity: warning
+          arguments: [3]
+        - name: identical-branches
+          severity: warning
+        - name: if-return
+        - name: package-comments
+          severity: warning
+        - name: range
+        - name: string-of-int
+        - name: struct-tag
+        - name: superfluous-else
+        - name: unused-parameter
+        - name: var-declaration
+
+  exclusions:
+    generated: lax
+    presets:
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - dupl
+          - gocyclo
+          - gosec
+          - lll
+          - funlen
+        path: _test\.go
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - mocks$
+
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gci:
+      custom-order: true
+      sections:
+        - standard
+        - default
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - mocks$
