@@ -119,7 +119,6 @@ func (b *Broker) Close(ctx context.Context) {
 	}
 
 	if err := controller.Close(); err != nil {
-		// TODO: use the platform logger
 		log.Printf("close kafka controller: %v", err)
 	}
 }
